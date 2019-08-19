@@ -14,7 +14,7 @@
 {{- $docsJs := append $js $vendor | resources.Concat $targetDocsJSPath -}}
 
 {{- if (eq (getenv "HUGO_ENV") "production") -}}
-  {{- $docsJs = $docsJs | resources.Minify | resources.Fingerprint "sha384" -}}
+  {{- $docsJs = $docsJs | resources.Minify -}}
 {{- end }}
 
-<script src="{{ $docsJs.Permalink | relURL }}"{{ if (eq (getenv "HUGO_ENV") "production") }} integrity="{{ $docsJs.Data.Integrity }}" crossorigin="anonymous"{{ end }}></script>
+<script src="{{ $docsJs.Permalink | relURL }}"></script>
